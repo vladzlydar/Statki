@@ -2,11 +2,12 @@ from Ship import Ship
 
 
 class EmptySea(Ship):
+
     hittedEmptySeaSymbol = "O"
 
     def __init__(self):
-        super().__init__(0, 0, 1, [False], "~")
-        self.__isHorizontal = False
+        super().__init__(1)
+        self.setIsHorizontal(True)
         self.setShipType(Ship.ShipType.EMPTYSEA)
 
     def toString(self, row, column):

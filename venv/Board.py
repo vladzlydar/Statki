@@ -1,8 +1,5 @@
-
-from OneDeck import OneDeck
-from TwoDeck import TwoDeck
-from ThreeDeck import ThreeDeck
-from FourDeck import FourDeck
+from HorizontalShip import HorizontalShip
+from VerticalShip import VerticalShip
 from EmptySea import EmptySea
 from Ship import Ship
 
@@ -37,6 +34,43 @@ class Board:
 
     def shootAt(self, row, column):
         return self.__ships[row][column].shootAt(row, column)
+
+    def okToPlaceShip(self, row, column, ship):
+        k = 0
+        if ship.getIsHorizontal():
+            if column + ship.getSize() <= len(self.__ships[row]):
+                for i in range(ship.getSize()):
+                    if not self.isOccupied(row, column):
+                        k += 1
+                        if k == ship.getSize():
+                            return True
+            else:
+                print("This cell is occupied, use other,  ship is not placed !")
+                return False
+        else:
+            if row + ship.getSize() <= len(self.__ships):
+                for i in range(ship.getSize()):
+                    if not self.isOccupied(row,column):
+                        k += 1
+                        if k == ship.getSize():
+                            return True
+            else:
+                print("This cell is occupied, use other,  ship is not placed !")
+                return False
+
+    def placeShipAt(self, row, column, ship):
+        if ship.getIsHorizontal():
+            for i in range(ship.getSize()):
+                self.__ships[row][column+i] = ship
+            ship.setRow(row)
+            ship.setColumn(column)
+            return True
+        else:
+            for i in range(0,ship.getSize()):
+                self.__ships[row+i][column] = ship
+            ship.setRow(row)
+            ship.setColumn(column)
+            return True
 
     def getShips(self):
         return self.__ships

@@ -15,148 +15,57 @@ class Ship:
     sunkedShipSymbol = "X"
     hittedShipSymbol = "H"
 
-    def __init__(self, row, column, size, hit, shipSymbol="-"):
-        self.__row = row
-        self.__column = column
-        self.__size = size
-        self.__isHorizontal = False
-        self.__hit = hit
-        self.__shipSymbols = []
-        self.__shipType = Ship.ShipType.EMPTYSEA
+    def __init__(self, size):
+        self._row = 0
+        self._column = 0
+        self._size = size
+        # self.__isHorizontal = False
+        self._hit = []
+        self._shipSymbols = []
+        self._shipType = Ship.ShipType(size).name
         for i in range(size):
-            self.__shipSymbols.append(shipSymbol)
+            self._hit.append(False)
+            self._shipSymbols.append(str(size))
 
-
-# SETTERS
 
     def setHit(self,index):
-        self.__hit = index
+        self._hit = index
 
     def setRow(self, row):
-        self.__row = row
+        self._row = row
 
     def setColumn(self, column):
-        self.__column = column
+        self._column = column
 
     def setIsHorizontal(self, isHorizontal):
-        self.__isHorizontal = isHorizontal
+        self._isHorizontal = isHorizontal
 
     def setShipType(self,shipType):
-        self.__shipType = shipType
+        self._shipType = shipType
 
-#GETTERS
     def getSize(self):
-        return self.__size
+        return self._size
 
     def getRow(self):
-        return self.__row
+        return self._row
 
     def getColumn(self):
-        return self.__column
+        return self._column
 
     def getShipSymbols(self):
-        return self.__shipSymbols
+        return self._shipSymbols
 
     def getHit(self):
-        return self.__hit
+        return self._hit
 
     def getShipType(self):
-        return self.__shipType
+        return self._shipType
 
-#OTHERFUNCTIONS
-
-
-    def isHorizontal(self):
-        return self.__isHorizontal
+    def getIsHorizontal(self):
+        return self._isHorizontal
 
     def isSunk(self):
-        if False in self.__hit:
+        if False in self._hit:
             return False
         else:
             return True
-
-    def shootAt(self,row,column):
-        if self.isHorizontal():
-            if self.__column <= column <= self.__column + self.getSize()-1:
-                if not self.__hit[column-self.__column]:
-                    self.__hit[column-self.__column] = True
-                    if not self.isSunk():
-                        self.__shipSymbols[column-self.__column] = self.hittedShipSymbol
-                        return True, "Hit!"
-                    else:
-                        for i in range(0, len(self.__shipSymbols)):
-                            self.__shipSymbols[i] = self.sunkedShipSymbol
-                        return True, "Hit and sink %s"%(self.getShipType())
-                else:
-                    print()
-                    return False, "You already shot there!"
-            else:
-                print()
-                return False, "You gave wrong row!"
-        else:
-            if self.__row <= row <= self.__row + self.getSize()-1:
-                if not self.__hit[row-self.__row]:
-                    self.__hit[row - self.__row] = True
-                    if not self.isSunk():
-                        self.__shipSymbols[row - self.__row] = self.hittedShipSymbol
-                        return True, "Hit!"
-                    else:
-                        for i in range(0, len(self.__shipSymbols)):
-                            self.__shipSymbols[i] = self.sunkedShipSymbol
-                        print()
-                        return True, "Hit and sink %s"%(self.getShipType())
-                else:
-                    return False, "You already shot there!"
-            else:
-                print()
-                return False, "You gave wrong row!"
-
-    def toString(self, row, column):
-        if self.isSunk():
-            return Ship.sunkedShipSymbol
-        else:
-            if self.isHorizontal():
-                return self.__shipSymbols[column - self.__column]
-            else:
-                return self.__shipSymbols[row - self.__row]
-
-    def okToPlaceShip(self, row, column, horizontal, board):
-        k = 0
-        if horizontal:
-            if column + self.getSize() <= len(board.getShips()[row]):
-                for i in range(self.getSize()):
-                    if not board.isOccupied(row, column):
-                        k += 1
-                        if k == self.getSize():
-                            return True
-            else:
-                return False
-        else:
-            if row + self.getSize() <= len(board.getShips()):
-                for i in range(self.getSize()):
-                    if not board.isOccupied(row,column):
-                        k += 1
-                        if k == self.getSize():
-                            return True
-            else:
-                return False
-
-    def placeShipAt(self, row, column, horizontal, board):
-        if self.okToPlaceShip(row,column,horizontal,board):
-            if horizontal:
-                for i in range(self.getSize()):
-                    board.getShips()[row][column+i] = self
-                self.setRow(row)
-                self.setIsHorizontal(horizontal)
-                self.setColumn(column)
-                return True
-            else:
-                for i in range(0,self.getSize()):
-                    board.getShips()[row+i][column] = self
-                self.setRow(row)
-                self.setIsHorizontal(horizontal)
-                self.setColumn(column)
-                return True
-        else:
-            print("You could not place ship in here")
-            return False
