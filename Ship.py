@@ -23,35 +23,35 @@ class Ship:
         self._isHorizontal = True
         self._shipSymbols = []
         self._shipType = Ship.ShipType(size).name
-        for i in range(size):
+        for _ in range(size):
             self._hit.append(False)
             self._shipSymbols.append(str(size))
 
-    def setRow(self, row):
+    def setrow(self, row):
         self._row = row
 
-    def setColumn(self, column):
+    def setcolumn(self, column):
         self._column = column
 
-    def getSize(self):
+    def getsize(self):
         return self._size
 
-    def getRow(self):
+    def getrow(self):
         return self._row
 
-    def getColumn(self):
+    def getcolumn(self):
         return self._column
 
-    def getShipSymbols(self):
+    def getshipsymbols(self):
         return self._shipSymbols
 
-    def getHit(self):
+    def gethit(self):
         return self._hit
 
-    def getShipType(self):
+    def getshiptype(self):
         return self._shipType
 
-    def isSunk(self):
+    def issunk(self):
         if False in self._hit:
             return False
         else:

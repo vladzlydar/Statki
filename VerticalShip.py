@@ -6,18 +6,18 @@ class VerticalShip(Ship):
         super().__init__(size)
         self._isHorizontal = False
 
-    def shootAt(self, row, _):
-        if self._row <= row <= self._row + self.getSize() - 1:
+    def shootat(self, row, _):
+        if self._row <= row <= self._row + self.getsize() - 1:
             if not self._hit[row - self._row]:
                 self._hit[row - self._row] = True
-                if not self.isSunk():
+                if not self.issunk():
                     self._shipSymbols[row - self._row] = self.hittedShipSymbol
                     return True, "Hit!"
                 else:
                     for i in range(0, len(self._shipSymbols)):
                         self._shipSymbols[i] = self.sunkedShipSymbol
                     print()
-                    return True, "Hit and sink %s" % (self.getShipType())
+                    return True, "Hit and sink %s" % (self.getshiptype())
             else:
                 return False, "You already shot there!"
         else:
@@ -25,11 +25,11 @@ class VerticalShip(Ship):
             return False, "You gave wrong row!"
 
 
-    def toString(self, row, column):
-        if self.isSunk():
+    def tostring(self, row, column):
+        if self.issunk():
             return Ship.sunkedShipSymbol
         else:
             return self._shipSymbols[row - self._row]
 
-    def getIsHorizontal(self):
+    def getishorizontal(self):
         return self._isHorizontal

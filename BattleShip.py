@@ -4,7 +4,7 @@ from HorizontalShip import HorizontalShip
 from VerticalShip import VerticalShip
 from EmptySea import EmptySea
 
-def whichShipToCreate(size, allign):
+def whichshiptocreate(size, allign):
     if allign == 0:
         return HorizontalShip(size)
     elif allign == 1:
@@ -15,14 +15,14 @@ def whichShipToCreate(size, allign):
 
 def game():
     ships = []
-    xDim,yDim = GUI.askForBoardSize()
+    xDim,yDim = GUI.askforboardsize()
     board = Board(xDim, yDim)
-    GUI.printBoard(board)
+    GUI.printboard(board)
     while True:
-        size, xPos, yPos, allign = GUI.askForShipToPlace()
-        ship = whichShipToCreate(int(size), allign)
-        if board.okToPlaceShip(int(yPos), int(xPos), ship):
-            board.placeShipAt(int(yPos), int(xPos), ship)
+        size, xPos, yPos, allign = GUI.askforshiptoplace()
+        ship = whichshiptocreate(int(size), allign)
+        if board.oktoplaceship(int(yPos), int(xPos), ship):
+            board.placeshipat(int(yPos), int(xPos), ship)
             ships.append(ship)
         next = input("Would you like to continue providing ships yes/no = 1/0 respectively: ")
         if next.isdigit():
@@ -36,10 +36,10 @@ def game():
         else:
             print("Bad data. End of providing ships!")
     while len(ships) > 0:
-        row, col = GUI.whereToShot()
-        _, text = board.shootAt(row, col)
+        row, col = GUI.wheretoshot()
+        _, text = board.shootat(row, col)
         print(text)
-        GUI.printBoard(board)
+        GUI.printboard(board)
         if "sink" in text:
             ships.pop()
             print("Congratulations you sink all the ships! Game over! ")
