@@ -52,8 +52,8 @@ class Board:
                         k += 1
                         if k == ship.getsize():
                             return True
-            print("This cell is occupied, use other,  ship is not placed !")
-            return False
+        print("This cell is occupied, use other,  ship is not placed !")
+        return False
 
     def placeshipat(self, row, column, ship):
         if ship.getishorizontal():
