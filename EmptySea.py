@@ -7,8 +7,7 @@ class EmptySea(Ship):
 
     def __init__(self):
         super().__init__(1)
-        self.setIsHorizontal(True)
-        self.setShipType(Ship.ShipType.EMPTYSEA)
+        self._isHorizontal = True
 
     def toString(self, row, column):
         if self.getHit()[0]:

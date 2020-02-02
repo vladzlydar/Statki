@@ -2,6 +2,7 @@ from HorizontalShip import HorizontalShip
 from VerticalShip import VerticalShip
 from EmptySea import EmptySea
 from Ship import Ship
+import copy
 
 class Board:
 
@@ -73,4 +74,4 @@ class Board:
             return True
 
     def getShips(self):
-        return self.__ships
+        return copy.deepcopy(self.__ships)

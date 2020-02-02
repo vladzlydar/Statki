@@ -1,9 +1,3 @@
-from Board import Board
-from Ship import Ship
-from HorizontalShip import HorizontalShip
-from VerticalShip import VerticalShip
-from EmptySea import EmptySea
-
 def whereToShot():
     row = input("Input row to shoot: ")
     column = input("Input column to shoot: ")
