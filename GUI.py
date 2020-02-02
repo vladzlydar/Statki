@@ -7,26 +7,26 @@ def wheretoshot():
         return 0, 0
 
 def askforboardsize():
-    xDimension = input("Provide how many cells should be horizontally: ")
-    yDimension = input("Provide how many cells should be vertically: ")
-    if xDimension.isdigit() and yDimension.isdigit():
+    xdimension = input("Provide how many cells should be horizontally: ")
+    ydimension = input("Provide how many cells should be vertically: ")
+    if xdimension.isdigit() and ydimension.isdigit():
         print("Now lets place the Ships!")
-        return xDimension, yDimension
+        return xdimension, ydimension
     else:
         return 10, 10
 
 def askforshiptoplace():
     print("If any parameter will be wrong the ship places on 0,0 with size 1")
     size = input("Provide size of ship 1-4: ")
-    xPos = input("Provide X position of ship nose: ")
-    yPos = input("Provide Y position of ship nose: ")
+    xpos = input("Provide X position of ship nose: ")
+    ypos = input("Provide Y position of ship nose: ")
     allign = input("Should be horizontal/vertical? Type 0/1 respectively: ")
     print("==========================================")
-    if size.isdigit() and xPos.isdigit() and yPos.isdigit() and allign.isdigit():
+    if size.isdigit() and xpos.isdigit() and ypos.isdigit() and allign.isdigit():
         if allign == 0:
-            return size, xPos, yPos, True
+            return size, xpos, ypos, True
         elif allign == 1:
-            return size, xPos, yPos, False
+            return size, xpos, ypos, False
     else:
         return 1, 0, 0, True
 

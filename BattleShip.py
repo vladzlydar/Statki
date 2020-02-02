@@ -15,14 +15,14 @@ def whichshiptocreate(size, allign):
 
 def game():
     ships = []
-    xDim,yDim = GUI.askforboardsize()
-    board = Board(xDim, yDim)
+    xdim,ydim = GUI.askforboardsize()
+    board = Board(xdim, ydim)
     GUI.printboard(board)
     while True:
-        size, xPos, yPos, allign = GUI.askforshiptoplace()
+        size, xpos, ypos, allign = GUI.askforshiptoplace()
         ship = whichshiptocreate(int(size), allign)
-        if board.oktoplaceship(int(yPos), int(xPos), ship):
-            board.placeshipat(int(yPos), int(xPos), ship)
+        if board.oktoplaceship(int(ypos), int(xpos), ship):
+            board.placeshipat(int(ypos), int(xpos), ship)
             ships.append(ship)
         next = input("Would you like to continue providing ships yes/no = 1/0 respectively: ")
         if next.isdigit():

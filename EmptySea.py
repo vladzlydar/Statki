@@ -19,7 +19,7 @@ class EmptySea(Ship):
                 (self.getrow() <= row <= self.getrow() + self.getsize() - 1):
             if not self.gethit()[column - self.getcolumn()]:
                 self.gethit()[column - self.getcolumn()] = True
-                self.getshipsymbols()[column - self.getcolumn()] = self.hittedEmptySeaSymbol
+                self.getshipsymbols()[column - self.getcolumn()] = self.hittedemptyseasymbol
                 return True, "You shoot in Sea!"
             else:
                 return False, "You already shoot there !"
