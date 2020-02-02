@@ -11,11 +11,11 @@ class VerticalShip(Ship):
             if not self._hit[row - self._row]:
                 self._hit[row - self._row] = True
                 if not self.issunk():
-                    self._shipSymbols[row - self._row] = self.hittedShipSymbol
+                    self._shipsymbols[row - self._row] = self.hitted_ship_symbol
                     return True, "Hit!"
                 else:
-                    for i in range(0, len(self._shipSymbols)):
-                        self._shipSymbols[i] = self.sunkedShipSymbol
+                    for i in range(0, len(self._shipsymbols)):
+                        self._shipsymbols[i] = self.sunked_ship_symbol
                     print()
                     return True, "Hit and sink %s" % (self.getshiptype())
             else:
@@ -27,9 +27,9 @@ class VerticalShip(Ship):
 
     def tostring(self, row, column):
         if self.issunk():
-            return Ship.sunkedShipSymbol
+            return Ship.sunked_ship_symbol
         else:
-            return self._shipSymbols[row - self._row]
+            return self._shipsymbols[row - self._row]
 
     def getishorizontal(self):
         return self._isHorizontal

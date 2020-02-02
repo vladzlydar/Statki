@@ -11,10 +11,10 @@ class Board:
         self.__ydimension = int(ydim)
         self.__ships = []
         for _ in range(0, self.__ydimension):
-            extendCol = []
+            extend_col = []
             for _ in range(0, self.__ydimension):
-                extendCol.append(EmptySea())
-            self.__ships.append(extendCol)
+                extend_col.append(EmptySea())
+            self.__ships.append(extend_col)
 
         for row in range(len(self.__ships)):
             for column in range(len(self.__ships[row])):
