@@ -25,10 +25,16 @@ def game():
             board.placeShipAt(int(yPos), int(xPos), ship)
             ships.append(ship)
         next = input("Would you like to continue providing ships yes/no = 1/0 respectively: ")
-        if int(next) == 0:
-            break
+        if next.isdigit():
+            if next == 0:
+                break
+            elif next == 1:
+                continue
+            else:
+                print("Bad choose!")
+                break
         else:
-            continue
+            print("Bad data. End of providing ships!")
     while len(ships) > 0:
         row, col = GUI.whereToShot()
         _, text = board.shootAt(row, col)

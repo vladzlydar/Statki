@@ -1,24 +1,34 @@
 def whereToShot():
     row = input("Input row to shoot: ")
     column = input("Input column to shoot: ")
-    return int(row), int(column)
+    if row.isdigit() and column.isdigit():
+        return int(row), int(column)
+    else:
+        return 0, 0
 
 def askForBoardSize():
     xDimension = input("Provide how many cells should be horizontally: ")
     yDimension = input("Provide how many cells should be vertically: ")
-    print("Now lets place the Ships!")
-    return xDimension, yDimension
+    if xDimension.isdigit() and yDimension.isdigit():
+        print("Now lets place the Ships!")
+        return xDimension, yDimension
+    else:
+        return 10, 10
 
 def askForShipToPlace():
+    print("If any parameter will be wrong the ship places on 0,0 with size 1")
     size = input("Provide size of ship 1-4: ")
     xPos = input("Provide X position of ship nose: ")
     yPos = input("Provide Y position of ship nose: ")
     allign = input("Should be horizontal/vertical? Type 0/1 respectively: ")
     print("==========================================")
-    if int(allign) == 0:
-        return size, xPos, yPos, True
-    elif int(allign) == 1:
-        return size, xPos, yPos, False
+    if size.isdigit() and xPos.isdigit() and yPos.isdigit() and allign.isdigit():
+        if allign == 0:
+            return size, xPos, yPos, True
+        elif allign == 1:
+            return size, xPos, yPos, False
+    else:
+        return 1, 0, 0, True
 
 def printBoard(board):
     print(end="   ")
